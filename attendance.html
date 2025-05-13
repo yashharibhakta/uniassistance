@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f2f7;
+            color: #4b0082;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #aaa;
+            margin-top: 50px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #4b0082;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4b0082;
+            color: white;
+        }
+        .low-attendance {
+            color: red;
+            font-weight: bold;
+        }
+        .warning {
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .back-button {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Weekly Attendance</h2>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Attended</th>
+                <th>Total</th>
+                <th>Percentage</th>
+            </tr>
+            <tr>
+                <td>Introduction to Data Structure </td>
+                <td>4</td>
+                <td>5</td>
+                <td>80%</td>
+            </tr>
+            <tr>
+                <td>Electronics Engineering </td>
+                <td>2</td>
+                <td>5</td>
+                <td class="low-attendance">40%</td>
+            </tr>
+            <tr>
+                <td>Programing Language - II </td>
+                <td>3</td>
+                <td>5</td>
+                <td class="low-attendance">60%</td>
+            </tr>
+            <tr>
+                <td>Professional English</td>
+                <td>4</td>
+                <td>5</td>
+                <td>80%</td>
+            </tr>
+            <tr>
+                <td>Materials for Computing Devices</td>
+                <td>3</td>
+                <td>5</td>
+                <td class="low-attendance">60%</td>
+            </tr>
+            <tr>
+                <td>Design Thinking - II</td>
+                <td>2</td>
+                <td>5</td>
+                <td class="low-attendance">40%</td>
+            </tr>
+            <tr>
+                <td>Mathematical Foundation for Computing - II</td>
+                <td>5</td>
+                <td>5</td>
+                <td>100%</td>
+            </tr>
+        </table>
+        <p class="attendance-summary low-attendance">Overall Attendance: 63%</p>
+        <p class="warning">You should start attending regular lectures to stay on track with your studies.</p>
+        <button class="back-button" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+    </div>
+</body>
+</html>

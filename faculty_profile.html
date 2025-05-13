@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prof. Akash Alegaonkar - Profile</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f2f7;
+      color: #4b0082;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-container {
+      max-width: 600px;
+      margin: 60px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ccc;
+      text-align: center;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #4b0082;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    .designation {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .info p {
+      margin: 10px 0;
+      font-size: 17px;
+    }
+
+    .back-button {
+      margin-top: 30px;
+      background-color: #4b0082;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #320066;
+    }
+
+    @media (max-width: 600px) {
+      .profile-container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .info p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <img src="profile.jpeg" alt="Prof. Akash Alegaonkar" class="profile-pic" />
+    <h2>Prof. Akash Alegaonkar</h2>
+    <div class="designation">Faculty of First Year BTech - CSE</div>
+
+    <div class="info">
+      <p><strong>Department:</strong> Computer Science & Engineering</p>
+      <p><strong>Subject:</strong> Design Thinking</p>
+      <p><strong>Email:</strong> akash.alegaonkar@university.edu</p>
+      <p><strong>Office Hours:</strong> Mon - Fri | 10:00 AM - 1:00 PM</p>
+    </div>
+
+    <button class="back-button" onclick="window.location.href='facultydash.html'">Back to Dashboard</button>
+  </div>
+
+</body>
+</html>

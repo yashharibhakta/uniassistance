@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f2f7;
+      margin: 0;
+      padding: 0;
+      color: #4b0082;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #aaa;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .chat-box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+
+    .message {
+      margin: 10px 0;
+      max-width: 70%;
+      padding: 10px;
+      border-radius: 8px;
+      word-wrap: break-word;
+    }
+
+    .student {
+      background-color: #e0e0e0;
+      text-align: left;
+    }
+
+    .faculty {
+      background-color: #d1c4e9;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .input-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .input-box input {
+      flex-grow: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .input-box button {
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-button {
+      background-color: #4b0082;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="chatContainer">
+    <!-- Filled by JS -->
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const studentId = params.get("student");
+
+    const students = {
+      riya_sharma: {
+        name: "Riya Sharma",
+        division: "Division A",
+        messages: [
+          { type: "student", text: "Hello sir, I'm having difficulty with pointers." },
+          { type: "faculty", text: "Thanks for informing. Let’s meet in lab hours." }
+        ]
+      },
+      arjun_verma: {
+        name: "Arjun Verma",
+        division: "Division B",
+        messages: [
+          { type: "student", text: "Sir, I need help choosing a project." },
+          { type: "faculty", text: "Sure, I’ll guide you in tomorrow’s session." }
+        ]
+      }
+    };
+
+    const container = document.getElementById("chatContainer");
+
+    if (!studentId || !students[studentId]) {
+      container.innerHTML = `<h2>Invalid student chat</h2>
+        <button class="back-button" onclick="window.location.href='student_appointments.html'">Back to Appointments</button>`;
+    } else {
+      const student = students[studentId];
+
+      function renderChat() {
+        const chatHTML = `
+          <h2>Chat with ${student.name} (${student.division})</h2>
+          <div class="chat-box" id="chatBox">
+            ${student.messages.map(m => `
+              <div class="message ${m.type}">${m.text}</div>
+            `).join("")}
+          </div>
+
+          <div class="input-box">
+            <input type="text" id="messageInput" placeholder="Type your message..." />
+            <button onclick="sendMessage()">Send</button>
+          </div>
+
+          <button class="back-button" onclick="window.location.href='student_appointments.html'">Back to Appointments</button>
+        `;
+        container.innerHTML = chatHTML;
+      }
+
+      window.sendMessage = function () {
+        const input = document.getElementById("messageInput");
+        const text = input.value.trim();
+        if (text) {
+          student.messages.push({ type: "faculty", text });
+          input.value = "";
+          renderChat();
+          const chatBox = document.getElementById("chatBox");
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }
+      };
+
+      renderChat();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job & Internship Board - University Assistance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('university-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #4b0082;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      text-align: center;
+      backdrop-filter: brightness(0.9);
+    }
+    .navbar {
+      background: rgba(75, 0, 130, 0.9);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+    .profile-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+    .profile-icon img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #4b0082;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px #aaa;
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      justify-content: center;
+      align-items: flex-start;
+      animation: fadeIn 1s ease;
+      flex-wrap: wrap;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .jobs-section, .sidebar {
+      flex: 1;
+      min-width: 300px;
+    }
+    .job-card {
+      background: #f9f9f9;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      text-align: left;
+      transition: transform 0.3s;
+    }
+    .job-card:hover {
+      transform: scale(1.02);
+    }
+    .job-card button {
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .job-card button:hover {
+      background-color: #320066;
+    }
+    .sidebar h3 {
+      margin-bottom: 20px;
+      color: #4b0082;
+    }
+    .resource-link {
+      display: block;
+      margin-bottom: 10px;
+      color: #4b0082;
+      text-decoration: none;
+    }
+    .resource-link:hover {
+      text-decoration: underline;
+    }
+    .alert-button {
+      background-color: #4b0082;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .alert-button:hover {
+      background-color: #320066;
+    }
+    .search-bar {
+      margin-bottom: 20px;
+    }
+    .search-bar input {
+      width: 80%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; 
+      min-width: 300px;
+      height: 100%; 
+    }
+    .sidebar > div {
+      flex-grow: 1;
+    }
+    .alert-button {
+      margin-top: auto; 
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!localStorage.getItem("isLoggedIn")) {
+        window.location.href = "dashboard.html";
+      }
+      loadJobs();
+    });
+
+    function navigateTo(page) {
+      window.location.href = page + ".html";
+    }
+
+    function logout() {
+      // Uncomment the next line if you want to perform logout action (removes the login state)
+      // localStorage.removeItem("isLoggedIn"); 
+      window.location.href = "dashboard.html"; // Navigate to dashboard.html directly
+    }
+
+    const jobs = [
+      { 
+        title: "Software Engineering Intern", 
+        company: "Tech Solutions Inc.", 
+        location: "New York, NY", 
+        posted: "2 days ago",
+        description: "Join our software engineering team and help develop cutting-edge solutions for real-world problems. Experience with Java, Python, or JavaScript is a plus."
+      },
+      { 
+        title: "Marketing Internship", 
+        company: "Bright Marketing Co.", 
+        location: "Remote", 
+        posted: "1 day ago",
+        description: "Work with the marketing team on campaigns, content creation, and social media strategies. Perfect for students interested in digital marketing."
+      },
+      { 
+        title: "Volunteer - Community Outreach", 
+        company: "Helping Hands", 
+        location: "San Francisco, CA", 
+        posted: "5 days ago",
+        description: "Help organize community events, outreach programs, and support local initiatives. This is a great opportunity to make a positive impact."
+      },
+      { 
+        title: "Data Analyst Intern", 
+        company: "DataXperts", 
+        location: "Remote", 
+        posted: "Today",
+        description: "Analyze large datasets, generate insights, and create reports. Ideal for students with experience in Excel, SQL, or Python."
+      },
+      { 
+        title: "UX/UI Designer Internship", 
+        company: "Creative Minds", 
+        location: "Austin, TX", 
+        posted: "3 days ago",
+        description: "Work on designing user interfaces and improving user experiences for our mobile apps and websites. Ideal for students with design skills."
+      },
+      { 
+        title: "HR Intern", 
+        company: "PeopleFirst HR", 
+        location: "Chicago, IL", 
+        posted: "1 day ago",
+        description: "Assist the HR team with recruitment, employee engagement, and HR operations. A great opportunity to learn about human resources."
+      },
+      { 
+        title: "Business Development Intern", 
+        company: "GrowthHackers", 
+        location: "Remote", 
+        posted: "Today",
+        description: "Support the business development team in identifying new growth opportunities and partnerships. Great for students interested in sales and marketing."
+      },
+      { 
+        title: "Cybersecurity Trainee", 
+        company: "SecureNet", 
+        location: "Seattle, WA", 
+        posted: "4 days ago",
+        description: "Learn and assist with cybersecurity practices, network defense, and threat analysis. Ideal for students studying cybersecurity or IT."
+      }
+    ];
+
+    function loadJobs(filter = "") {
+      const jobList = document.getElementById('jobList');
+      jobList.innerHTML = "";
+      jobs.filter(job => job.title.toLowerCase().includes(filter.toLowerCase()))
+          .forEach(job => {
+            const card = document.createElement('div');
+            card.className = 'job-card';
+            card.innerHTML = ` 
+              <h4>${job.title}</h4>
+              <p>${job.company} - ${job.location}</p>
+              <p><small>Posted ${job.posted}</small></p>
+              <p>${job.description}</p> <!-- Display job description -->
+              <button onclick="applyJob('${job.title}')">Apply</button>
+            `;
+            jobList.appendChild(card);
+          });
+    }
+
+    function applyJob(jobTitle) {
+      alert(`Applied for ${jobTitle}!`);
+    }
+
+    function notifyNewJob() {
+      alert("You'll be notified about new job openings!");
+    }
+  </script>
+</head>
+<body>
+  <div class="navbar">
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="resources.html">Resources</a>
+      <a href="jobs.html">Job Board</a>
+    </div>
+    <div class="profile-icon">
+      <img src="profile-icon.png" alt="Profile Icon" />
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="jobs-section">
+      <h2>Available Opportunities</h2>
+      <div id="jobList"></div>
+    </div>
+    <div class="sidebar">
+      <div style="flex-grow: 1;"></div>
+      <button class="alert-button" onclick="notifyNewJob()">🔔 Get Job Alerts</button>
+      <button class="alert-button" style="background:red;" onclick="logout()">Back to Dashboard</button>
+    </div>
+  </div>
+</body>
+</html>

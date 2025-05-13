@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Chat with Clubs</title>
+    <style>
+        :root {
+            --primary-color: #7B2CBF;
+            --primary-dark: #5A189A;
+            --background-light: #ffffff;
+            --background-chat: #f3f0f7;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-light);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            overflow: hidden;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .main-container {
+            width: 90%;
+            max-width: 900px;
+            background-color: var(--background-light);
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 30px;
+            border: 2px solid var(--primary-color);
+            position: relative;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .club-list {
+            padding: 20px;
+            background-color: var(--background-light);
+            overflow-y: auto;
+            max-height: 50vh;
+        }
+
+        .club-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .club-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .club-description {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .join-button {
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .join-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .chat-container {
+            display: none;
+            flex-direction: column;
+            height: 80vh;
+            background-color: var(--background-light);
+            position: relative;
+        }
+
+        .chat-window {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: var(--background-chat);
+        }
+
+        .chat-message {
+            margin-bottom: 12px;
+            padding: 10px 15px;
+            background-color: #eee;
+            border-radius: 16px;
+            max-width: 75%;
+            word-wrap: break-word;
+        }
+
+        .chat-message.user {
+            background-color: var(--primary-color);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+
+        .input-area {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background: var(--background-light);
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid var(--primary-color);
+            font-size: 14px;
+            outline: none;
+            background: var(--background-light);
+            color: var(--text-dark);
+        }
+
+        .send-button button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .send-button button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #bbb;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background-color: #888;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="back-button" id="backButton" onclick="goBack()">Back to Club</button>
+
+    <div class="main-container">
+        <div class="header">Community Chat</div>
+
+        <div class="club-list" id="clubList">
+            <!-- List of Clubs will be displayed here -->
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-window" id="chatWindow">
+                <!-- Chat messages will appear here -->
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="messageInput" class="input-field" placeholder="Type a message..." />
+                <div class="send-button">
+                    <button id="sendButton">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // List of clubs with descriptions
+        const clubs = [
+            {
+                name: "The Electoral Literacy Club (ELC)",
+                description: "The Electoral Literacy Club (ELC) at MIT ADT University aims to foster democratic engagement, civic responsibility, and leadership among students."
+            },
+            {
+                name: "The Infusion Club",
+                description: "The Infusion Club is dedicated to redefining taste through the art of infusion, prioritizing health and culinary innovation."
+            },
+            {
+                name: "SAE Collegiate Club",
+                description: "We are the leading technical body for knowledge dissemination and skill development in mobility."
+            },
+            // Add more clubs here as needed
+        ];
+
+        // Function to display club list
+        function displayClubs() {
+            const clubList = document.getElementById('clubList');
+            clubs.forEach(club => {
+                const clubItem = document.createElement('div');
+                clubItem.classList.add('club-item');
+                clubItem.innerHTML = `
+                    <div class="club-title">${club.name}</div>
+                    <div class="club-description">${club.description}</div>
+                    <button class="join-button" onclick="joinCommunity('${club.name}')">Join Community</button>
+                `;
+                clubList.appendChild(clubItem);
+            });
+        }
+
+        // Function to handle joining a community
+        function joinCommunity(clubName) {
+            document.getElementById('clubList').style.display = 'none'; // Hide club list
+            document.getElementById('chatContainer').style.display = 'flex'; // Show chat container
+
+            // Display a welcome message in the chat window
+            const chatWindow = document.getElementById('chatWindow');
+            const welcomeMessage = document.createElement('div');
+            welcomeMessage.textContent = `Welcome to the ${clubName} community!`;
+            welcomeMessage.classList.add('chat-message', 'user');
+            chatWindow.appendChild(welcomeMessage);
+
+            // Scroll to the bottom
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        // Send message
+        document.getElementById('sendButton').addEventListener('click', function() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (message !== "") {
+                const chatWindow = document.getElementById('chatWindow');
+                
+                // Create a new message element
+                const messageElement = document.createElement('div');
+                messageElement.textContent = message;
+                messageElement.classList.add('chat-message', 'user');
+                chatWindow.appendChild(messageElement);
+                
+                // Clear input field after sending
+                messageInput.value = "";
+
+                // Scroll to the bottom
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+        });
+
+        // Back to clubs page
+        function goBack() {
+            document.getElementById('chatContainer').style.display = 'none'; // Hide chat container
+            document.getElementById('clubList').style.display = 'block'; // Show club list
+            document.getElementById('chatWindow').innerHTML = ''; // Clear chat window
+        }
+
+        // Show the clubs when the page loads
+        displayClubs();
+    </script>
+</body>
+</html>

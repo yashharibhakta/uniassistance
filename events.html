@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f2f7;
+            color: #4b0082;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #aaa;
+            margin-top: 50px;
+        }
+        .event-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .event-list th, .event-list td {
+            border: 1px solid #4b0082;
+            padding: 12px;
+            text-align: center;
+        }
+        .event-list th {
+            background-color: #4b0082;
+            color: white;
+        }
+        .enroll-button {
+            background-color: #4b0082;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .back-button {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upcoming Events</h2>
+        <table class="event-list">
+            <tr>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <td>Persona Fest</td>
+                <td>March 11 - 13</td>
+                <td><button class="enroll-button">Enroll</button></td>
+            </tr>
+            <tr>
+                <td>Spectra 13</td>
+                <td>April 5</td>
+                <td><button class="enroll-button">Enroll</button></td>
+            </tr>
+            <tr>
+                <td>Spectra 14</td>
+                <td>April 10</td>
+                <td><button class="enroll-button">Enroll</button></td>
+            </tr>
+        </table>
+        <button class="back-button" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+    </div>
+</body>
+</html>

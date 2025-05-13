@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>University Assistance - Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f2f7;
+      color: #4b0082;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px #aaa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #4b0082;
+      text-align: center;
+      outline: none;
+    }
+
+    .login-input:focus {
+      box-shadow: 0 0 5px #7a42f4;
+      border-color: #7a42f4;
+    }
+
+    .login-button {
+      width: 100%;
+      background-color: #4b0082;
+      color: white;
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+  </style>
+  <script>
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (username === "" || password === "") {
+        alert("Please fill in both ID Number and Password!");
+        return;
+      }
+
+      // Store login flag (optional)
+      localStorage.setItem("isLoggedIn", "true");
+
+      // Redirect to faculty dashboard
+      window.location.href = "facultydash.html";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const inputs = document.querySelectorAll(".login-input");
+      inputs.forEach(input => {
+        input.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            login();
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <img src="uni-assistance2.jpg" alt="University Assistance Logo" class="logo" />
+    <h2>University Assistance</h2>
+    <input type="text" id="username" class="login-input" placeholder="Enter ID" />
+    <input type="password" id="password" class="login-input" placeholder="Enter Password" />
+    <button class="login-button" onclick="login()">Login</button>
+  </div>
+</body>
+</html>

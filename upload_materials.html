@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Notes & Assignments</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f2f7;
+      color: #4b0082;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #ccc;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+
+    select,
+    input[type="text"],
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-btn {
+      background-color: #4b0082;
+      color: white;
+    }
+
+    .upload-btn:hover {
+      background-color: #320066;
+    }
+
+    .back-button {
+      background-color: gray;
+      color: white;
+    }
+
+    .back-button:hover {
+      background-color: #555;
+    }
+
+    .success-message {
+      color: green;
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+        margin: 20px;
+      }
+
+      .btn {
+        font-size: 15px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Upload Notes & Assignments</h2>
+
+    <form id="uploadForm">
+      <label for="division">Select Division</label>
+      <select id="division" required>
+        <option value="">-- Choose Division --</option>
+        <option value="A">Division A</option>
+        <option value="B">Division B</option>
+        <option value="C">Division C</option>
+      </select>
+
+      <label for="materialType">Material Type</label>
+      <select id="materialType" required>
+        <option value="">-- Select Type --</option>
+        <option value="Notes">Notes</option>
+        <option value="Assignment">Assignment</option>
+      </select>
+
+      <label for="title">Title</label>
+      <input type="text" id="title" placeholder="Enter title..." required>
+
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" placeholder="Write a brief description..."></textarea>
+
+      <label for="fileUpload">Upload File</label>
+      <input type="file" id="fileUpload" required>
+
+      <button type="submit" class="btn upload-btn">Upload</button>
+    </form>
+
+    <div id="successMsg" class="success-message" style="display:none;">Upload Successful!</div>
+
+    <button class="btn back-button" onclick="window.location.href='facultydash.html'">Back to Dashboard</button>
+  </div>
+
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("successMsg").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("successMsg").style.display = "none";
+        document.getElementById("uploadForm").reset();
+      }, 2500);
+    });
+  </script>
+</body>
+</html>

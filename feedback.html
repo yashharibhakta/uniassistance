@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peer Review & Feedback System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f2f7;
+      color: #4b0082;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+    }
+    .container {
+      width: 90%;
+      max-width: 600px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px #aaa;
+    }
+    h1 {
+      font-size: 32px;
+      color: #4b0082;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 24px;
+      margin: 20px 0 10px;
+    }
+    textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      resize: vertical;
+      font-size: 16px;
+    }
+    .button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 18px;
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+    .button:hover {
+      background-color: #320066;
+    }
+    .back-button {
+      background-color: #6a0dad;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Peer Review & Feedback System</h1>
+
+  <section>
+    <h2>Submit Your Draft</h2>
+    <textarea id="draftInput" placeholder="Paste your assignment draft here..." rows="6"></textarea>
+    <button class="button" onclick="submitDraft()">Submit Draft</button>
+    <button class="button back-button" onclick="navigateToDashboard()">Back to Dashboard</button>
+  </section>
+</div>
+
+<script>
+  function submitDraft() {
+    const draft = document.getElementById('draftInput').value.trim();
+    if (draft) {
+      alert('Draft submitted successfully!');
+      document.getElementById('draftInput').value = '';
+    } else {
+      alert('Please enter your draft before submitting.');
+    }
+  }
+
+  function navigateToDashboard() {
+    window.location.href = 'dashboard.html'; // Update with actual dashboard page name
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Peer Digital Library Access</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #d7cce9, #f3f2f7);
+      color: #4b0082;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+    }
+    .container {
+      width: 90%;
+      max-width: 700px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.8s ease-in;
+    }
+    h1 {
+      font-size: 28px;
+      color: #4b0082;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      width: 85%;
+      padding: 12px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    input[type="text"]:focus {
+      border-color: #6a0dad;
+      outline: none;
+    }
+    .search-button {
+      width: 12%;
+      padding: 12px;
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 16px;
+    }
+    .search-button:hover {
+      background-color: #320066;
+    }
+    .library-section {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .library-section h2 {
+      color: #4b0082;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .library-list {
+      background-color: #f3e8ff;
+      padding: 20px;
+      border-radius: 12px;
+      min-height: 100px;
+    }
+    .library-item {
+      margin-bottom: 12px;
+    }
+    .add-to-cart {
+      background-color: #6a0dad;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+    .add-to-cart:hover {
+      background-color: #4b0082;
+    }
+    .cart {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      font-size: 30px;
+      color: #6a0dad;
+    }
+    .cart-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+    .button-back-dashboard {
+      margin-top: 30px;
+      padding: 12px;
+      width: 100%;
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .button-back-dashboard:hover {
+      background-color: #320066;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Digital Library</h1>
+
+  <div class="cart" onclick="goToCart()">
+    🛒
+    <div id="cartBadge" class="cart-badge">0</div>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search ebooks, journals, academic papers...">
+    <button class="search-button" onclick="searchLibrary()">Search</button>
+  </div>
+
+  <div class="library-section">
+    <h2>Available Books & Journals</h2>
+    <div id="libraryList" class="library-list">
+      <p>No search performed yet.</p>
+    </div>
+  </div>
+
+  <!-- Back to Dashboard Button -->
+  <button class="button-back-dashboard" onclick="navigateToDashboard()">Back to Dashboard</button>
+</div>
+
+<script>
+  let cartCount = 0;
+
+  function searchLibrary() {
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    const libraryList = document.getElementById('libraryList');
+    libraryList.innerHTML = '';
+
+    if (!query) {
+      libraryList.innerHTML = '<p>Please enter a search term.</p>';
+      return;
+    }
+
+    let content = '';
+    if (query === 'engineering physics') {
+      content = `
+        <p>Showing results for: <strong>Engineering Physics</strong></p>
+        <div class="library-item">
+           <strong>Engineering Physics</strong> - Available Copies: 74
+          <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+      `;
+    } else if (query === 'mathematical foundations for computing') {
+      content = `
+        <p>Showing results for: <strong>Mathematical Foundations for Computing</strong></p>
+        <div class="library-item">
+           <strong>Mathematical Foundations for Computing</strong> - Available Copies: 90
+          <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+      `;
+    } else if (query === 'digital electronics and logic design') {
+      content = `
+        <p>Showing results for: <strong>Digital Electronics and Logic Design</strong></p>
+        <div class="library-item">
+          <strong>Digital Electronics and Logic Design</strong> - Available Copies: 67
+          <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+      `;
+    } else {
+      content = `
+        <p>Showing results for: <strong>${query}</strong></p>
+        <div class="library-item">
+           No matching books found.
+        </div>
+      `;
+    }
+
+    libraryList.innerHTML = content;
+  }
+
+  function addToCart() {
+    cartCount++;
+    document.getElementById('cartBadge').innerText = cartCount;
+    alert('Added to cart!');
+  }
+
+  function navigateToDashboard() {
+    window.location.href = 'dashboard.html';
+  }
+
+  function goToCart() {
+    window.location.href = 'DL_Cart.html'; // Updated to navigate to DL_Cart.html
+  }
+</script>
+
+</body>
+</html>

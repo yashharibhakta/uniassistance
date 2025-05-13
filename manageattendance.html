@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Attendance Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f2f7;
+            color: #4b0082;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #aaa;
+            margin-top: 50px;
+        }
+        h2 {
+            color: #4b0082;
+        }
+        .division-section {
+            margin-top: 30px;
+            text-align: left;
+            padding: 20px;
+            background-color: #e8e6f1;
+            border-radius: 8px;
+        }
+        .division-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #4b0082;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4b0082;
+            color: white;
+        }
+        .low-attendance {
+            color: red;
+            font-weight: bold;
+        }
+        .attendance-summary {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .warning {
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .send-mail-btn {
+            background-color: #ff0000;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        .back-button {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Faculty Attendance Management</h2>
+
+        <!-- Division A -->
+        <div class="division-section">
+            <div class="division-title">Division A (60 Students)</div>
+            <table>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Student Name</th>
+                    <th>Attended</th>
+                    <th>Total</th>
+                    <th>Percentage</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Rahul Kumar</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>80%</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Aarti Mehta</td>
+                    <td>2</td>
+                    <td>5</td>
+                    <td class="low-attendance">40%</td>
+                    <td><button class="send-mail-btn">Send mail</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Vikram Singh</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td class="low-attendance">60%</td>
+                    <td><button class="send-mail-btn">Send mail</button></td>
+                </tr>
+                <!-- Other students go here -->
+            </table>
+
+            <p class="attendance-summary">Overall Attendance: 76%</p>
+        </div>
+
+        <div class="button-container">
+            <!-- Back to Dashboard button -->
+            <button class="back-button" onclick="window.location.href='facultydash.html'">Back to Dashboard</button>
+        </div>
+    </div>
+</body>
+</html>

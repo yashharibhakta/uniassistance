@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Appointments</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f2f7;
+      margin: 0;
+      padding: 0;
+      color: #4b0082;
+      text-align: center;
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #aaa;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .appointment {
+      border: 1px solid #4b0082;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      text-align: left;
+    }
+    .student-name {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .issue {
+      margin: 10px 0;
+      font-style: italic;
+    }
+    .approve-button {
+      background-color: #4b0082;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .back-button {
+      background-color: #4b0082;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Appointments</h2>
+
+    <div class="appointment">
+      <div class="student-name">Riya Sharma (Division A)</div>
+      <div class="issue">Issue: Difficulty understanding pointers in C</div>
+      <button class="approve-button" onclick="window.location.href='chat_page.html?student=riya_sharma'">Approve Appointment</button>
+    </div>
+
+    <div class="appointment">
+      <div class="student-name">Arjun Verma (Division B)</div>
+      <div class="issue">Issue: Need help selecting a final year project</div>
+      <button class="approve-button" onclick="window.location.href='chat_page.html?student=arjun_verma'">Approve Appointment</button>
+    </div>
+
+    <button class="back-button" onclick="window.location.href='facultydash.html'">Back to Dashboard</button>
+  </div>
+</body>
+</html>

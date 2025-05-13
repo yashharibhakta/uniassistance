@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>University Assistance - Welcome</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f2f7;
+      color: #4b0082;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px #aaa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 5px;
+      font-size: 24px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .login-button {
+      width: 100%;
+      background-color: #4b0082;
+      color: white;
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+  </style>
+  <script>
+    function navigateToAdminLogin() {
+      window.location.href = "facultylogin.html";
+    }
+    function navigateToStudentLogin() {
+      window.location.href = "studentlogin.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <img src="uni-assistance2.jpg" alt="University Assistance Logo" class="logo" />
+    <h2>University Assistance</h2>
+    <p class="tagline">All in one solution for your uni</p>
+    <button class="login-button" onclick="navigateToAdminLogin()">Login as Admin</button>
+    <button class="login-button" onclick="navigateToStudentLogin()">Login as Student</button>
+  </div>
+</body>
+</html>

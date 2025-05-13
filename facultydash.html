@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Faculty Dashboard - University Assistance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f2f7;
+      color: #4b0082;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px #aaa;
+    }
+
+    .logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+    }
+
+    .dashboard-button {
+      width: 100%;
+      padding: 15px;
+      margin: 12px 0;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .dashboard-button:hover {
+      background-color: #320066;
+    }
+
+    .profile-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .profile-icon img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #4b0082;
+    }
+
+    .logout-button {
+      background-color: red;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (!localStorage.getItem("isLoggedIn")) {
+        window.location.href = "facultylogin.html"; // Redirect if not logged in
+      }
+    });
+
+    function navigateTo(page) {
+      window.location.href = page + ".html"; // Navigating to the page
+    }
+
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      setTimeout(() => {
+        window.location.href = "main.html"; // Redirect to login after logout
+      }, 200);
+    }
+  </script>
+</head>
+<body>
+  <!-- Profile Icon -->
+  <div class="profile-icon" onclick="navigateTo('faculty_profile')">
+    <img src="profile.jpeg" alt="Profile Icon" />
+  </div>
+
+  <div class="container">
+    <img src="uni-assistance2.jpg" alt="University Assistance Logo" class="logo" />
+    <h2>Faculty Dashboard</h2>
+
+    <button class="dashboard-button" onclick="navigateTo('manageattendance')">Manage Attendance</button>
+    <button class="dashboard-button" onclick="navigateTo('post_lecture')">Post Lecture Updates</button>
+    <button class="dashboard-button" onclick="navigateTo('student_appointments')">Student Appointments</button>
+    <button class="dashboard-button" onclick="navigateTo('upload_materials')">Upload Notes & Assignments</button>
+    <button class="dashboard-button logout-button" onclick="logout()">Logout</button>
+  </div>
+</body>
+</html>

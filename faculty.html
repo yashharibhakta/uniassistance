@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f2f7;
+            color: #4b0082;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #aaa;
+            margin-top: 50px;
+        }
+        .back-button, .appointment-button {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .faculty-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            box-shadow: 0px 0px 10px #ddd;
+        }
+        .faculty-name {
+            flex: 1;
+            text-align: left;
+            padding-left: 10px;
+        }
+    </style>
+    <script>
+        function requestAppointment(professor) {
+            alert("Appointment request sent to " + professor + ".");
+        }
+
+        function goToDashboard() {
+            // Redirect to dashboard page
+            window.location.href = "dashboard.html";
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Faculty Appointment</h2>
+
+        <div class="faculty-info">
+            <p class="faculty-name">Prof. Akash Alegaonkar (Design Thinking)</p>
+            <button class="appointment-button" onclick="requestAppointment('Prof. Akash Alegaonkar')">Ask for Appointment</button>
+        </div>
+
+        <div class="faculty-info">
+            <p class="faculty-name">Prof. Pooja Pawale (Introduction to Data Structure)</p>
+            <button class="appointment-button" onclick="requestAppointment('Prof. Pooja Pawale')">Ask for Appointment</button>
+        </div>
+
+        <div class="faculty-info">
+            <p class="faculty-name">Dr. Vaishali Kamble (Materials for Computer Devices)</p>
+            <button class="appointment-button" onclick="requestAppointment('Dr. Vaishali Kamble')">Ask for Appointment</button>
+        </div>
+
+        <!-- Back to Dashboard Button -->
+        <button class="back-button" onclick="goToDashboard()">Back to Dashboard</button>
+    </div>
+
+</body>
+</html>

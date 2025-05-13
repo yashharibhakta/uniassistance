@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Cart</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #d7cce9, #f3f2f7);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4b0082;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      text-align: center;
+      color: #4b0082;
+    }
+
+    .cart-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f5f1fa;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+
+    .cart-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+    }
+
+    .item-info {
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .remove-button {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .remove-button:hover {
+      background: #e60000;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background: #4b0082;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background: #320066;
+    }
+
+    .empty-cart-message {
+      text-align: center;
+      font-size: 18px;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Your Library Cart</h1>
+    <ul id="cartList" class="cart-list"></ul>
+    <div id="emptyCart" class="empty-cart-message" style="display: none;">Your cart is empty.</div>
+    <button class="back-button" onclick="goBack()">⬅️ Back to Library</button>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const listEl = document.getElementById('cartList');
+    const emptyCartMessage = document.getElementById('emptyCart');
+
+    function renderCart() {
+      listEl.innerHTML = '';
+      if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+        return;
+      }
+      emptyCartMessage.style.display = 'none';
+
+      cart.forEach((item, idx) => {
+        const li = document.createElement('li');
+        li.className = 'cart-item';
+        li.innerHTML = `
+          <div class="item-info">
+            <strong>${item.title}</strong><br>
+            <small>Available Copies: ${item.copies}</small>
+          </div>
+          <button class="remove-button" onclick="removeItem(${idx})">Remove</button>
+        `;
+        listEl.appendChild(li);
+      });
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function goBack() {
+      window.location.href = 'library.html'; // make sure this is your library page
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

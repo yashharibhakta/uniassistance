@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes & Assignment Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f2f7;
+            color: #4b0082;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #aaa;
+            margin-top: 50px;
+        }
+        .folder {
+            background-color: #e6e6fa;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .back-button {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Notes & Assignment Tracker</h2>
+        
+        <div class="folder" onclick="window.location.href='ids.html'">📂 IDS</div>
+        <div class="folder" onclick="window.location.href='pl2.html'">📂 PL - II</div>
+        <div class="folder" onclick="window.location.href='mfc2.html'">📂 MFC - II</div>
+        <div class="folder" onclick="window.location.href='dt.html'">📂 DT</div>
+
+        <p>Assignments: Done - 2 | Pending - 1 | Due Date: March 30</p>
+
+        <button class="back-button" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+    </div>
+</body>
+</html>
